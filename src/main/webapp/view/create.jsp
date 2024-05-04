@@ -43,6 +43,7 @@
             <button type="submit">Tạo</button>
         </div>
     </form>
+    <a href="/document"> Quay lại </a>
 </div>
 </body>
 </html>

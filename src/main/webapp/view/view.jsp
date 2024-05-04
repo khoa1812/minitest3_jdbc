@@ -55,33 +55,22 @@
 </head>
 <body>
 <div class="container">
-    <h2>Tạo Tài Liệu Mới</h2>
-    <form action="/documents" method="post">
-        <input type="hidden" name="action" value="create">
-        <div>
-            <label for="id">ID:</label>
-            <input type="number" id="id" name="id" required>
-        </div>
-        <div>
-            <label for="code">Loại tài liệu:</label>
-            <input type="text" id="code" name="code" required>
-        </div>
-        <div>
-            <label for="name">Tên tài liệu:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-            <label for="year">Năm lưu trữ:</label>
-            <input type="number" id="year" name="year" required>
-        </div>
-        <div>
-            <label for="description">Mô tả:</label>
-            <textarea id="description" name="description" required></textarea>
-        </div>
-        <div>
-            <button type="submit">Tạo</button>
-        </div>
-    </form>
+    <h1>View Document</h1>
+        <input type="hidden" name="action" value="edit">
+        <input type="hidden" name="id" value="${document.id}" readonly>
+        <label for="code">Code:</label>
+        <input type="text" id="code" name="code" value="${document.code}" readonly>
+        <br>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="${document.name}" readonly>
+        <br>
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" value="${document.year}" readonly>
+        <br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" readonly>${document.description}</textarea>
+        <br>
+        <a href="/documents"> Quay lại </a>
 </div>
 </body>
 </html>

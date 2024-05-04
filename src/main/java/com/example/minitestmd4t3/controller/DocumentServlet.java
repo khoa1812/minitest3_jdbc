@@ -20,6 +20,9 @@ public class DocumentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/html; charset=UTF-8");
         String action = req.getParameter("action");
 
         if (action == null) {
@@ -28,10 +31,10 @@ public class DocumentServlet extends HttpServlet {
 
         switch (action) {
             case "create":
-                createPost(req, resp);
+                createDocument(req, resp);
                 break;
             case "edit":
-                updatePost(req, resp);
+                updateDocument(req, resp);
                 break;
             case "delete":
                 deleteDocument(req, resp);
@@ -58,15 +61,15 @@ public class DocumentServlet extends HttpServlet {
                 showDeleteForm(req, resp);
                 break;
             case "view":
-                viewPost(req, resp);
+                viewDocument(req, resp);
                 break;
             default:
-                listPosts(req, resp);
+                listDocuments(req, resp);
                 break;
         }
     }
 
-    private void viewPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void viewDocument(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         Document document = this.documentService.searchById(id);
         RequestDispatcher dispatcher;
@@ -80,7 +83,7 @@ public class DocumentServlet extends HttpServlet {
         }
     }
 
-    private void listPosts(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void listDocuments(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Document> documents = this.documentService.showAll();
         req.setAttribute("documents", documents);
 
@@ -89,7 +92,7 @@ public class DocumentServlet extends HttpServlet {
         dispatcher.forward(req,resp);
     }
 
-    private void createPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void createDocument(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         int id = Integer.parseInt(req.getParameter("id"));
         String code = req.getParameter("code");
@@ -110,7 +113,7 @@ public class DocumentServlet extends HttpServlet {
         dispatcher.forward(req,resp);
     }
 
-    private void updatePost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void updateDocument(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
         String code = req.getParameter("code");
         String name = req.getParameter("name");

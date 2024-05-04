@@ -71,22 +71,23 @@
 <body>
 <div class="container">
     <h1>Edit Document</h1>
-    <form action="documents" method="post">
+    <form action="/documents" method="post">
         <input type="hidden" name="action" value="edit">
-        <input type="hidden" name="id" value="${document.id}">
+        <input type="hidden" name="id" value="${post.id}">
         <label for="code">Code:</label>
-        <input type="text" id="code" name="code" value="${document.code}">
+        <input type="text" id="code" name="code" value="${post.code}">
         <br>
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="${document.name}">
+        <input type="text" id="name" name="name" value="${post.name}">
         <br>
         <label for="year">Year:</label>
-        <input type="number" id="year" name="year" value="${document.year}">
+        <input type="number" id="year" name="year" value="${post.year}">
         <br>
         <label for="description">Description:</label>
-        <textarea id="description" name="description">${document.description}</textarea>
+        <textarea id="description" name="description">${post.description}</textarea>
         <br>
         <input type="submit" value="Save Changes">
+        <a href="/documents"> Quay lại </a>
     </form>
 </div>
 </body>

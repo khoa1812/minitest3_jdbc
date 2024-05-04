@@ -12,11 +12,36 @@ public class DocumentDAO {
     private static final String JDBC_USERNAME = "root";
     private static final String JDBC_PASSWORD = "khoatrinh18122001";
 
+    protected Connection getConnection() {
+        Connection connection = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
+            System.out.println("THANH CONG");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("lỗi kết nối");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            System.out.println("looix ");
+        }
+        return connection;
+    }
+
+//    public static void main(String[] args) {
+//        DocumentDAO documentDAO = new DocumentDAO();
+//        documentDAO.getConnection();
+//        List<Document> documentList =
+//
+//                documentDAO.getAllDocuments();
+//        System.out.println(documentList);
+//    }
+
     public List<Document> getAllDocuments() {
         List<Document> documents = new ArrayList<>();
         String query = "SELECT * FROM document";
 
-        try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
+        try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
@@ -39,7 +64,7 @@ public class DocumentDAO {
         Document document = null;
         String query = "SELECT * FROM document WHERE id = ?";
 
-        try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
+        try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
@@ -61,7 +86,7 @@ public class DocumentDAO {
     public void createDocument(Document document) {
         String query = "INSERT INTO document (id, code, name, year, description) VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
+        try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, document.getId());
             stmt.setString(2, document.getCode());
@@ -78,7 +103,7 @@ public class DocumentDAO {
     public void updateDocument(Document document) {
         String query = "UPDATE document SET code = ?, name = ?, year = ?, description = ? WHERE id = ?";
 
-        try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
+        try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, document.getCode());
             stmt.setString(2, document.getName());
@@ -95,7 +120,7 @@ public class DocumentDAO {
     public void deleteDocument(int id) {
         String query = "DELETE FROM document WHERE id = ?";
 
-        try (Connection conn = DriverManager.getConnection(JDBC_URL, JDBC_USERNAME, JDBC_PASSWORD);
+        try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();

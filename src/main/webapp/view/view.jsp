@@ -56,8 +56,8 @@
 <body>
 <div class="container">
     <h1>View Document</h1>
-        <input type="hidden" name="action" value="edit">
-        <input type="hidden" name="id" value="${document.id}" readonly>
+<%--        <input type="hidden" name="action" value="edit">--%>
+<%--        <input type="hidden" name="id" value="${document.id}" readonly>--%>
         <label for="code">Code:</label>
         <input type="text" id="code" name="code" value="${document.code}" readonly>
         <br>

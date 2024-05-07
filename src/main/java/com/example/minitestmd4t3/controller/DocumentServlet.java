@@ -128,7 +128,7 @@ public class DocumentServlet extends HttpServlet {
             document.setId(id);
             document.setCode(code);
             document.setName(name);
-            document.setName(name);
+            document.setYear(year);
             document.setDescription(description);
             this.documentService.update(id, document);
             req.setAttribute("document", document);

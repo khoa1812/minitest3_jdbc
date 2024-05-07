@@ -28,14 +28,6 @@ public class DocumentDAO {
         return connection;
     }
 
-//    public static void main(String[] args) {
-//        DocumentDAO documentDAO = new DocumentDAO();
-//        documentDAO.getConnection();
-//        List<Document> documentList =
-//
-//                documentDAO.getAllDocuments();
-//        System.out.println(documentList);
-//    }
 
     public List<Document> getAllDocuments() {
         List<Document> documents = new ArrayList<>();

@@ -71,7 +71,7 @@
 <body>
 <div class="container">
     <h1>Edit Document</h1>
-    <form action="/documents" method="post">
+    <form method="post">
         <input type="hidden" name="action" value="edit">
         <input type="hidden" name="id" value="${post.id}">
         <label for="code">Code:</label>
